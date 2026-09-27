@@ -35,13 +35,13 @@
 
 
 1. Quel est le rôle d’un éditeur de code ?
-    - 
+    - Son role est de rediger et structurer des texte.
 2. Quelle différence existe-t-il entre un éditeur et un environnement d’exécution ?
-    - 
+    - L'editeur sert a ecrire le code mais l'environnement d'execution traduit et execute le code ecrit.
 3. Pourquoi est-il utile de travailler dans un dossier de projet ouvert dans VS Code ?
-    -
+    - VS code offre beaucoup de fonctionnalites qu' ils simplifient l'organisation et le recherche dans un projet. 
 4. Quel est l’intérêt d’un outil de formatage automatique ?
-    -
+    - Pour garantir un code lisible, uniforme et propre
 
 
 # 7. Activité 4 — Écrire un premier programme Node.js
@@ -52,10 +52,10 @@
 
 
 1. Quelle différence existe-t-il entre const et let ?
-    - 
+    - Un const est un variable non redeclarable et non reassignable. Un let est un variable reassigniable mais non redeclarable 
 2. Que signifie l’utilisation des accents graves dans une chaîne de caractères ?
-    - 
+    - Permet de creer une chaine de modele (Template Literal) facilitant l'interpolation des variable dans le chaine.
 3. Quel est le rôle de l’interpolation ${...} ?
-    -
+    - Permet d'inserer directement des variable dans une chaine.
 4. Pourquoi est-il préférable de déclarer une constante pour une valeur qui ne change pas ?
-    -
+    - Pour eviter les modification accidentelles du code. 
