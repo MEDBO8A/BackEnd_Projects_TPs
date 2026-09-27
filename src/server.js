@@ -1,14 +1,15 @@
-const applicationName = "SangConnect";
-const applicationVersion = "1.0.0";
+import http from "node:http";
 
-console.log(`Application : ${applicationName}`);
-console.log(`Version : ${applicationVersion}`);
+const port = 3000;
 
+const server = http.createServer((req, res) => {
+  res.writeHead(200, {
+    "Content-Type": "text/plain; charset=utf-8"
+  });
 
-console.log("Function output");
-function displayApplicationInfo(name, version) {
-  console.log(`Application : ${name}`);
-  console.log(`Version : ${version}`);
-}
+  res.end("Bienvenue dans SangConnect");
+});
 
-displayApplicationInfo("SangConnect", "1.0.0");
+server.listen(port, () => {
+  console.log(`Serveur démarré sur http://localhost:${port}`);
+});

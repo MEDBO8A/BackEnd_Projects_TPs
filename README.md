@@ -58,4 +58,30 @@
 3. Quel est le rôle de l’interpolation ${...} ?
     - Permet d'inserer directement des variable dans une chaine.
 4. Pourquoi est-il préférable de déclarer une constante pour une valeur qui ne change pas ?
-    - Pour eviter les modification accidentelles du code. 
+    - Pour eviter les modification accidentelles du code.
+
+
+# 8. Activité 5 — Créer un serveur HTTP avec node:http 
+
+### Questions
+
+1. Quel est le rôle de http.createServer() ?
+    - Permet la creation du serveur http.
+2. À quel moment la fonction (req, res) => { ... } est-elle exécutée ?
+    - Achaque fois le serveur recue une requette.
+3. Quelle est la différence entre req et res ?
+    - req est l'information recue par le serveur, res est l'information envoyee par le serveur.
+4. Quel est le rôle de res.writeHead() ?
+    - Envoie le code de statut et les en-têtes http.
+5. Quel est le rôle de res.end() ?
+    - Finalise l'envoi de la réponse http au client.
+6. Que se passe-t-il si le port 3000 est déjà utilisé ?
+    - Un erreur de port 
+7. Comment arrêter le serveur depuis le terminal ?
+    - CTRL + C
+
+
+# 9. Activité 6 — Créer des routes HTTP simples
+
+### Questions
+
