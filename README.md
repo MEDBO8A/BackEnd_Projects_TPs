@@ -135,3 +135,43 @@
 
 # 11. Activité 6.2 — Utiliser différents codes de statut HTTP
 
+### Questions 
+
+1. Quel code est renvoyé par /api/health ?
+    - {"status":"ok","service":"SangConnect"}
+2. Quel code est renvoyé par une route inexistante ?
+    - {"error":"Route non trouvée","path":"/api/inconnue","method":"GET","timestamp":"2026-09-28T15:28:23.649Z"}
+3. Pourquoi ne faut-il pas retourner 200 lorsqu’une route n’existe pas ?
+    - Parce qu'on a un code de verification, si la route n'existe pas, on retourne 404.
+4. Quelle différence existe-t-il entre le code HTTP et le contenu JSON ?
+    - Le code HTTP indique le statut de la requête au niveau réseau, tandis que le contenu JSON transporte les données applicatives dans le corps de la réponse.
+
+
+# 12. Activité 6.3 — Ajouter une route /api/info
+
+### Questions
+
+1. Quel objet Node.js permet d’accéder aux informations du processus ?
+     - process
+2. Quelle propriété permet d’obtenir la version de Node.js ?
+    - process.version
+3. Pourquoi la version de l’application est-elle distincte de celle de Node.js ?
+    - La version de Node.js correspond à l'environnement d'execution, tandis que la version de l'application correspond au projet.
+4. Quelles autres informations pourraient être retournées ?
+    - Le temps de fonctionnement du serveur (process.uptime()), l'utilisation de la mémoire (process.memoryUsage()), l'identifiant du processus (process.pid).
+
+
+# 13. Activité 6.4 — Examiner la méthode HTTP
+
+### Questions
+
+1. Quelle propriété permet de connaître la méthode HTTP ?
+    - req.method
+2. Quelle propriété permet de connaître l’URL ?
+    - req.url
+3. Quelle différence existe-t-il entre GET et POST ?
+    - GET sert à lire des données sans les modifier, tandis que POST sert à envoyer des données au serveur pour les créer ou les modifier.
+4. Pourquoi une route doit-elle tenir compte de la méthode ?
+    - Pour assurer la gestion de la route et leur fonctionalites.
+5. Une même URL peut-elle être associée à plusieurs méthodes ?
+    - Oui 
