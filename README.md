@@ -1,3 +1,4 @@
+##Med Amine Boughalleb - 4GL
 # 4. Activité 1 — Vérifier l’environnement de travail
 
 ### Questions
@@ -84,4 +85,53 @@
 # 9. Activité 6 — Créer des routes HTTP simples
 
 ### Questions
+
+1. Quelle propriété permet de connaître la méthode HTTP ?
+    - req.method
+2. Quelle propriété permet de connaître l’URL demandée ?
+    - req.url
+3. Que renvoie req.method lorsque vous ouvrez une page dans un navigateur ?
+    - GET
+4. Que renvoie req.url lorsque vous consultez /api/health ?
+    - "/api/health"
+
+##9.1 Creation des routes
+
+### Questions
+
+1. Pourquoi utilise-t-on return après chaque réponse ?
+    - Pour stopper l'execution du code suivant et ne pas envoyer le status 404 avec le status 200.
+2. Pourquoi la réponse 404 doit-elle être placée après les routes connues ?
+    - Parce que la vérification du code se fait de manière séquentielle.
+3. Que se passe-t-il lorsqu’une URL n’est pas définie ?
+    - La requête traverse tous les blocs if sans entrer dans aucun d'eux, puis retombe sur le code final qui renvoie le statut HTTP 404 avec le message "Route non trouvée".
+4. Une URL identique peut-elle être utilisée avec plusieurs méthodes HTTP ?
+    - Oui.
+
+# 10. Activité 6.1 — Créer une fonction utilitaire JSON
+
+### Questions
+
+1. Quelle instruction transforme un objet JavaScript en chaîne JSON ?
+    - JSON.stringify()
+2. Quel est le rôle de Content-Type ?
+    - C'est un en-tete http qui indique au client le format de la donnée renvoyée dans le corps de la réponse.
+3. Pourquoi est-il intéressant de regrouper ces instructions dans une fonction ?
+    - Pour éviter la répétition de code.
+4. Quels paramètres la fonction devrait-elle recevoir ?
+    - l’objet ServerResponse, le code de statut http et les données à convertir en JSON.
+
+### Questions
+
+1. Pourquoi faut-il utiliser return après l’appel à sendJson() ?
+    - our stopper l'exécution de la fonction qui traite la requête.
+2. Que se passe-t-il si plusieurs réponses sont envoyées pour une même requête ?
+    - Un erreur "ERR_HTTP_HEADERS_SENT" sera afficher.
+3. Quel code de statut est utilisé pour une réponse réussie ?
+    - 200
+4. Comment retourner une réponse avec le code 404 ?
+    - sendJson(res, { error: "Ressource non trouvée" }, 404);
+
+
+# 11. Activité 6.2 — Utiliser différents codes de statut HTTP
 
