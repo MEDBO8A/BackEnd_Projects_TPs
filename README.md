@@ -175,3 +175,29 @@
     - Pour assurer la gestion de la route et leur fonctionalites.
 5. Une même URL peut-elle être associée à plusieurs méthodes ?
     - Oui 
+
+# 14. Activité 7 — Tester l’API avec CURL
+
+### Tableau de validation
+
+| URL | Méthode | Code attendu | Code observé | Résultat |
+| :--- | :--- | :--- | :--- | :--- |
+| `/` | `GET` | 200 | 200 | Conforme |
+| `/api/health` | `GET` | 200 | 200 | Conforme |
+| `/api/info` | `GET` | 200 | 200 | Conforme |
+| `/api/diagnostic` | `GET` | 200 | 200 | Conforme |
+| `/api/inconnue` | `GET` | 404 | 404 | Conforme |
+| `/api/diagnostic` | `POST` | 405 | 405 | Conforme |
+
+### Questions 
+
+1. Toutes les réponses possèdent-elles un Content-Type ?  
+   - Oui, toutes les réponses retournent Content-Type: application/json grâce à la fonction sendJson.
+2. Les codes HTTP sont-ils cohérents ?  
+   - Oui, ils respectent les normes REST : 200 pour un succès, 404 pour une route introuvable et 405 pour une méthode non autorisée.
+3. Que se passe-t-il si le serveur est arrêté ?  
+   - curl affiche une erreur de connexion réseau (Connection refused) car aucun processus ne réponds sur le port 3000.
+4. Pourquoi tester une route existante et une route inexistante ?  
+   - Pour valider à la fois le bon fonctionnement du code nominal et la gestion correcte des erreurs par l'API.
+5. Quel est l’intérêt de l’option -i ?  
+   - L'option -i permet d'afficher les en-têtes HTTP de la réponse (incluant le code de statut et le Content-Type) en plus du corps JSON.
