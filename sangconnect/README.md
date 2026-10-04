@@ -1,4 +1,60 @@
 ##Med Amine Boughalleb - 4GL
+
+# SangConnect API
+
+API Node.js native pour l'application SangConnect.
+
+## 1. Instructions de lancement
+
+Exécutez le serveur avec Node.js :
+
+```bash
+node src/server.js 
+```
+
+## Liste des routes
+
+| Route | Méthode | Code de statut | Description |
+| :--- | :--- | :--- | :--- |
+| `/` | `GET` | `200 OK` | Message d'accueil principal |
+| `/api/health` | `GET` | `200 OK` | Vérification de l'état de santé du serveur |
+| `/api/info` | `GET` | `200 OK` | Informations générales sur l'application et l'environnement |
+| `/api/welcome` | `GET` | `200 OK` | Message de bienvenue de l'API |
+| `/api/version` | `GET` | `200 OK` | Version de l'application et informations système |
+| `/api/diagnostic` | `GET` | `200 OK` | Diagnostic de la requête (en-têtes, méthode, URL, date) |
+| `/api/diagnostic` | `Autre` | `405 Method Not Allowed` | Retourné si la méthode HTTP utilisée n'est pas `GET` |
+| *Toutes les autres routes* | `Toutes` | `404 Not Found` | Retourné lorsqu'une route demandée n'existe pas |
+
+
+## Commandes curl pour tester l'API
+
+```bash
+# 1. Route racine (/)
+curl -i http://localhost:3000/
+
+# 2. État de santé (/api/health)
+curl -i http://localhost:3000/api/health
+
+# 3. Informations générales (/api/info)
+curl -i http://localhost:3000/api/info
+
+# 4. Message de bienvenue (/api/welcome)
+curl -i http://localhost:3000/api/welcome
+
+# 5. Version (/api/version)
+curl -i http://localhost:3000/api/version
+
+# 6. Diagnostic - GET 200 (/api/diagnostic)
+curl -i http://localhost:3000/api/diagnostic
+
+# 7. Diagnostic - POST 405 (Méthode non autorisée)
+curl -i -X POST http://localhost:3000/api/diagnostic
+
+# 8. Route non trouvée - 404
+curl -i http://localhost:3000/api/inconnu
+
+```
+
 # 4. Activité 1 — Vérifier l’environnement de travail
 
 ### Questions
@@ -176,6 +232,7 @@
 5. Une même URL peut-elle être associée à plusieurs méthodes ?
     - Oui 
 
+
 # 14. Activité 7 — Tester l’API avec CURL
 
 ### Tableau de validation
@@ -201,3 +258,37 @@
    - Pour valider à la fois le bon fonctionnement du code nominal et la gestion correcte des erreurs par l'API.
 5. Quel est l’intérêt de l’option -i ?  
    - L'option -i permet d'afficher les en-têtes HTTP de la réponse (incluant le code de statut et le Content-Type) en plus du corps JSON.
+
+
+# 15. Activité 8 — Créer un mini health check
+
+### Questions 
+
+1. Pourquoi utilise-t-on une route de santé ?
+    - Pour permettre aux outils de supervision de savoir instantanément si le serveur fonctionne.
+2. Pourquoi cette route doit-elle rester rapide ?
+    - Pour ne pas surcharger le serveur et éviter de bloquer le processeur avec des tests fréquents.
+3.Quelle différence existe-t-il entre une vérification de disponibilité et une vérification complète ?
+    - La disponibilité indique si le serveur répond, tandis qu'une vérification complète s'assure que toutes ses dépendances fonctionnent.
+4. Quelles vérifications supplémentaires seraient possibles dans une application réelle ?
+    - Vérifier la base de données, l'espace disque, la mémoire, les API externes et les variables d'environnement.
+
+
+# 16. Activité 9 — Vérifier l’organisation du code
+
+### Questions 
+
+1. Quel est le rôle de server.js ?
+    - Recevoir les requêtes HTTP et démarrer l'écoute du serveur web.
+2. Que se passe-t-il si l’application possède 30 routes ?
+    - Le fichier devient illisible, extrêmement long et très difficile à maintenir.
+3. Pourquoi de nombreuses conditions if compliquent-elles la maintenance ?
+    - Elles rendent le code rigide, propice aux bugs et complexe à tester ou faire évoluer.
+4. Comment pourrait-on séparer les routes dans plusieurs fichiers ?
+    - En créant un système de routage modulaire qui associe chaque URL à un fichier spécifique.
+5. Quelles responsabilités pourraient être confiées à des fichiers distincts ?
+    - Le routage, la logique métier, l'accès aux données et les fonctions utilitaires.
+
+
+# 17. Travail pratique à faire à la maison
+

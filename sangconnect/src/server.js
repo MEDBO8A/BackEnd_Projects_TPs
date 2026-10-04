@@ -1,7 +1,7 @@
 import http from "node:http";
 import { sendJson } from "./utils/http.js";
 
-const port = 3000;
+const port = 3000; 
 
 const server = http.createServer((req, res) => {
   if (req.url === "/" && req.method === "GET") {
@@ -12,11 +12,14 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  if (req.url === "/api/health" && req.method === "GET"){
+  if (req.url === "/api/health" && req.method === "GET") {
     sendJson(res, 200, {
       status: "ok",
-      service: "SangConnect"
+      application: "SangConnect",
+      timestamp: new Date().toISOString(),
+      nodeVersion: process.version
     });
+
     return;
   }
 
@@ -49,6 +52,34 @@ const server = http.createServer((req, res) => {
 
     return;
   }
+  
+  if (req.url === "/api/welcome" && req.method === "GET"){
+    sendJson(res, 200, {
+      message: "Bienvenue dans l’API SangConnect",
+      description: "Gestion des dons de sang" 
+    })
+  }
+
+  if (req.url === "/api/version" && req.method === "GET"){
+    sendJson(res, 200, {
+      application: "SangConnect",
+      version: "1.0.0",
+      nodeVersion: process.version,
+      environment: "development"
+    })
+  }
+
+  if (req.url === "/api/diagnostic" && req.method === "GET"){
+    sendJson(res, 200, {
+      method: req.method,
+      url: req.url,
+      timestamp: new Date().toISOString(),
+      headers: req.headers
+    })
+  }
+
+
+
 
   sendJson(res, 404, {
     error: "Route non trouvée",
