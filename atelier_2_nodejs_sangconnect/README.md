@@ -1,4 +1,4 @@
-##Med Amine Boughalleb - 4GL
+## Med Amine Boughalleb - 4GL
 
 
 # 4. Activité 1 — Comprendre les modules Node.js
@@ -156,7 +156,7 @@
 2. Pourquoi cette fonction retourne-t-elle true ou false ?
     - Pour indiquer au serveur si la route a été traitée.
 3. Que représente match[1] ?
-    - Le premier paramètre extrait par l'expression régulière.
+    - Le premier paramètre extrait depuis l'url.
 4. Pourquoi utilise-t-on Number() ?
     - Pour convertir l'ID texte extrait de l'URL en nombre.
 5. Pourquoi la route /api/centres/1 doit-elle être distinguée de /api/centres ?
