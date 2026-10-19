@@ -1,81 +1,65 @@
 ## Med Amine Boughalleb - 4GL
 
-# TP 3 — Concevoir et implémenter une API REST avec Node.js et Express.js
+# Atelier 4 — Validation des données et gestion des erreurs avec Node.js, Express.js et Zod
 
-## 3. Préparation de l'environnement
+### 34. Exercice 1 — Tester toutes les validations
 
-### Questions
+#### Cas 1 — Donneur valide
 
-1. Quelle est la différence entre Node.js et npm ?
-    - Node.js est un environnement d'exécution JavaScript, tandis que npm est son gestionnaire de paquets.
+La requête : POST /api/donneurs avec {"nom": "Khelifi", "prenom": "Yassine", "groupeSanguin": "A+"}
 
+Le code HTTP : 201 Created
 
-## 5. Installation d'Express.js
+Le résultat obtenu : {"id": 1, "nom": "Khelifi", "prenom": "Yassine", "groupeSanguin": "A+"}
 
-### Questions
+La raison du rejet éventuel : Aucun rejet (données valides)
 
-1. Quelle nouvelle section apparaît ?
-    - dependencies
-2. Quelle dépendance contient Express ?
-    - "express"
-3. Pourquoi Express est-il enregistré dans dependencies ?
-    - Car c'est une bibliothèque indispensable au fonctionnement de l'application en production.
+#### Cas 2 — Nom trop court
 
-## 9. Première modification : route /api/health
+La requête : POST /api/donneurs avec {"nom": "A", "prenom": "Yassine", "groupeSanguin": "A+"}
 
-### Questions
+Le code HTTP : 400 Bad Request
 
-1. Quelle différence observez-vous entre : res.send(...) et : res.json(...)
-    - res.send() envoie une réponse brute, tandis que res.json() convertit les données en JSON et définit automatiquement l'en-tête Content-Type.
+Le résultat obtenu : {"message": "Données invalides", "errors": ["nom trop court"]}
 
+La raison du rejet éventuel : Le nom doit contenir au moins 2 caractères
 
-## 13. Les paramètres d'URL
+#### Cas 3 — Groupe sanguin invalide
 
-### Questions
+La requête : POST /api/donneurs avec {"nom": "Khelifi", "prenom": "Yassine", "groupeSanguin": "XYZ"}
 
-1. Que contient : req.params.id dans chacun des deux cas ?
-    - Cas /api/donneurs/1 : "1" (chaîne de caractères)
+Le code HTTP : 400 Bad Request
 
-    - Cas /api/donneurs/25 : "25" (chaîne de caractères)
+Le résultat obtenu : {"message": "Données invalides", "errors": ["groupe sanguin invalide"]}
 
+La raison du rejet éventuel : XYZ n'est pas un groupe sanguin valide (A+, A-, B+, B-, AB+, AB-, O+, O-)
 
-## 14. Transformer l'identifiant en nombre
+#### Cas 4 — Donneur sans prénom
 
-### Questions
+La requête : POST /api/donneurs avec {"nom": "Khelifi", "groupeSanguin": "A+"}
 
-1. Quel est maintenant le type de : id ?
-    - number
+Le code HTTP : 400 Bad Request
 
+Le résultat obtenu : {"message": "Données invalides", "errors": ["prenom requis"]}
 
-## 19. Les paramètres de requête — req.query
+La raison du rejet éventuel : Le champ prenom est obligatoire
 
-### Questions
+#### Cas 5 — Identifiant invalide
 
-1. Quelle est la différence entre : req.params et : req.query
-    - req.params récupère les paramètres dynamiques de l'URL (/route/:id), et req.query récupère les paramètres optionnels de la chaîne de requête (/route?cle=valeur).
+La requête : GET /api/donneurs/abc
 
+Le code HTTP : 400 Bad Request
 
-## 22. Tester POST avec curl
+Le résultat obtenu : {"message": "Données invalides", "errors": ["id invalide"]}
 
-### Questions
+La raison du rejet éventuel : L'identifiant dans l'URL doit être un nombre
 
-1. À quoi sert req.body ?
-    - Il contient les données transmises par le client dans le corps de la requête HTTP.
-2. Pourquoi avons-nous ajouté express.json() ?
-    - Pour permettre à Express de lire et d'analyser les données au format JSON reçues dans les requêtes.
-3. Pourquoi retournons-nous le code 201 plutôt que 200 ?
-    - Le code 201 Created indique explicitement qu'une ressource a été créée avec succès.
+#### Cas 6 — Groupe sanguin invalide dans la requête
 
+La requête : GET /api/donneurs?groupeSanguin=XYZ
 
-## 35. Exercice 1 — Ajouter la ressource Centre
+Le code HTTP : 400 Bad Request
 
-### Questions
+Le résultat obtenu : {"message": "Données invalides", "errors": ["groupe sanguin invalide"]}
 
-1. Comment organiseriez-vous les fichiers ?
-    - Dans des dossiers séparés : src/routes/centre.routes.js, src/controllers/centre.controller.js et src/services/centre.service.js.
-2. Quelle fonction doit se trouver dans le service ?
-    - Les fonctions gérant la manipulation et la recherche des données des centres.
-3. Quelle fonction doit se trouver dans le contrôleur ?
-    - Les fonctions gérant la logique HTTP (req, res), faisant le lien entre les routes et le service.
-4. Où doit être définie la route ?
-    - Dans le fichier centre.routes.js rattaché au serveur principal via app.use("/api/centres", centreRoutes).
+La raison du rejet éventuel : Le paramètre de recherche groupeSanguin=XYZ est invalide
