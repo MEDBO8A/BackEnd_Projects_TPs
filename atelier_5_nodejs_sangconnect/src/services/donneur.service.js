@@ -47,6 +47,7 @@ export function patch(id, data) {
     if (data.nom !== undefined) donneur.nom = data.nom;
     if (data.prenom !== undefined) donneur.prenom = data.prenom;
     if (data.groupeSanguin !== undefined) donneur.groupeSanguin = data.groupeSanguin;
+    if (data.telephone !== undefined) donneur.telephone = data.telephone;
     return donneur;
 }
 

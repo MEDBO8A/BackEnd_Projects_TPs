@@ -40,14 +40,14 @@ export async function update(id, data) {
     );
 }
 
-export function patch(id, data) {
-    const donneur = getById(id);
-    if (!donneur) return null;
+export async function patch(id, data) {
 
-    if (data.nom !== undefined) donneur.nom = data.nom;
-    if (data.prenom !== undefined) donneur.prenom = data.prenom;
-    if (data.groupeSanguin !== undefined) donneur.groupeSanguin = data.groupeSanguin;
-    return donneur;
+    await getById(id);
+
+    return donneurRepository.update(
+        id,
+        data
+    );
 }
 
 export async function remove(id) {

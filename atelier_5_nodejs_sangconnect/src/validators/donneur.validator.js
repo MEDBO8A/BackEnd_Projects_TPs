@@ -15,7 +15,9 @@ export const donneurSchema = z.object({
         "AB-",
         "O+",
         "O-"
-    ])
+    ]),
+    
+    telephone: z.string().min(8).optional()
 
 });
 
@@ -40,9 +42,10 @@ export const updateDonneurSchema = donneurSchema.partial();
 
 /* TEST */
 const donneur = {
-    nom: "",
+    nom: "amine",
     prenom: "Ahmed",
-    groupeSanguin: "XYZ"
+    groupeSanguin: "A+",
+    telephone: "88990099"
 };
 
 const resultat = donneurSchema.safeParse(donneur);

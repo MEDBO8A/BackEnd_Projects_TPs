@@ -1,4 +1,4 @@
-export function validate(schema, source) {
+export function validate(schema, source = "body") {
 
     return (req, res, next) => {
 

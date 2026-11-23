@@ -1,18 +1,18 @@
 import prisma from "./database/prisma.js";
 
-const getDonneur = await prisma.donneurs.findUnique({
+const getDonneur = await prisma.donneur.findUnique({
     where: {
         id: 2
     }
 });
-const createDonneur = await prisma.donneurs.create({
+const createDonneur = await prisma.donneur.create({
     data: {
         nom: "Khelifi",
         prenom: "Yassine",
         groupeSanguin: "AB+"
     }
 });
-const updateDonneur = await prisma.donneurs.update({
+const updateDonneur = await prisma.donneur.update({
     where: {
         id: 1
     },
@@ -21,7 +21,7 @@ const updateDonneur = await prisma.donneurs.update({
     }
 });
 
-await prisma.donneurs.delete({
+await prisma.donneur.delete({
     where: {
         id: 1
     }

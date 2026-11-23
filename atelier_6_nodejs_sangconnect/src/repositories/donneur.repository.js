@@ -10,7 +10,7 @@ export function findById(id) {
             id: id
         }
     });
-}1
+}
 
 export function create(data) {
     return prisma.donneur.create({

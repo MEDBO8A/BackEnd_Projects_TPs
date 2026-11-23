@@ -1,6 +1,7 @@
 import express from "express";
 
 import donneurRoutes from "./routes/donneur.routes.js";
+import donRoutes from "./routes/don.routes.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 
 const app = express();
@@ -16,6 +17,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/donneurs", donneurRoutes);
+app.use("/api/dons", donRoutes);
 
 app.use(errorHandler); 
 

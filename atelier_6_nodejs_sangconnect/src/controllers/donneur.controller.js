@@ -67,15 +67,24 @@ export async function update(req, res, next) {
     }
 }
 
-export function patch(req, res) {
-    const id = Number(req.params.id);
-    const patchedDonneur = donneurService.patch(id, req.body);
+export async function patch(req, res, next) {
 
-    if (!patchedDonneur) {
-        return res.status(404).json({ message: "Donneur introuvable" });
+    try {
+
+        const id = Number(req.params.id);
+
+        const donneur =
+            await donneurService.patch(
+                id,
+                req.body
+            );
+
+        res.json(donneur);
+
+    } catch (error) {
+
+        next(error);
     }
-
-    res.json(patchedDonneur);
 }
 
 export async function remove(req, res, next) {

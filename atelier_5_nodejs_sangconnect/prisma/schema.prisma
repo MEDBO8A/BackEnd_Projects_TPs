@@ -17,4 +17,5 @@ model Donneur {
   nom           String
   prenom        String
   groupeSanguin String
+  telephone     String?
 }
